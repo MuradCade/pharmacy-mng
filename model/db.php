@@ -8,7 +8,7 @@ class Database{
     // private $pwd = "";
     // private $dbname = "pharmcay_mng";
     private $hostname = "https://databases.000webhost.com/";
-    private $username = "root";
+    private $username = "id19234114_root";
     private $pwd = "&BJQ25I49gZ*tWZa";
     private $dbname = "id19234114_pharmcay_mng";
     public $connect;
