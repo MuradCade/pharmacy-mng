@@ -3,6 +3,10 @@
 
 class Database{
 
+    // private $hostname = "localhost";
+    // private $username = "root";
+    // private $pwd = "";
+    // private $dbname = "pharmcay_mng";
     private $hostname = "localhost";
     private $username = "root";
     private $pwd = "";
