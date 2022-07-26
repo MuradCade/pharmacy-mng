@@ -7,10 +7,10 @@ class Database{
     // private $username = "root";
     // private $pwd = "";
     // private $dbname = "pharmcay_mng";
-    private $hostname = "localhost";
+    private $hostname = "https://databases.000webhost.com/";
     private $username = "root";
-    private $pwd = "";
-    private $dbname = "pharmcay_mng";
+    private $pwd = "&BJQ25I49gZ*tWZa";
+    private $dbname = "id19234114_pharmcay_mng";
     public $connect;
     public function __construct(){
 
