@@ -1,3 +1,36 @@
+<?php
+require_once("admin-class/add-rooms.php");
+
+if(isset($_POST['submit'])){
+  $name = $_POST['room_name'];
+  $desc = $_POST['desc'];
+
+
+  if(empty($name)){
+    header("location:add-rooms.php?error=Empty-Name-Field");
+    exit();
+  }
+  
+  else if(empty($desc)){
+    header("location:add-rooms.php?error=Empty-Description-Field");
+    exit();
+  }
+  else{
+    $add_room = new addRoom();
+    $add_room->room($name,$desc);
+    header('location:rooms.php');
+    exit();
+  }
+  
+
+}
+
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'include/header.php';?>
@@ -29,23 +62,23 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                  <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+                  <form action="add-rooms.php" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                   <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                    <input type="text" class="form-control has-feedback-left" placeholder="Room Number">
-                    <span class="fa fa-hotel form-control-feedback left" aria-hidden="true"></span>
+                    <input type="text" class="form-control has-feedback-left" placeholder="Room Number or Name" name="room_name">
+                    <span class="fa fa-hotel form-control-feedback left" aria-hidden="true" ></span>
                   </div>
                 </div>
                 <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                    <input type="text" class="form-control has-feedback-left" placeholder="Description">
+                    <input type="text" class="form-control has-feedback-left" placeholder="Description" name="desc">
                     <span class="fa fa-map form-control-feedback left" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                      <button class="btn btn-primary" type="button">Cancel</button>
-                      <button type="submit" class="btn btn-success">Submit</button>
+                      <a href="rooms.php"class="btn btn-primary">Cancel</a>
+                      <button type="submit" class="btn btn-success" name="submit">Submit</button>
                   </div>
                 </div>
                   </form>

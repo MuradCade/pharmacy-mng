@@ -1,3 +1,9 @@
+<?php
+ include('admin-class/display-patientinfo.php');
+ $data = new displayPatient();
+ $fetchData = $data->allpatient();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'include/header.php';?>
@@ -27,7 +33,7 @@
                   <div class="x_title">
                     <h2>List of Patient Category</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                    <a href="add-patient.php" class="btn btn-sm btn-info text-white"><i class="fa fa-plus"></i> Add Category</a>
+                    <a href="add-patient.php" class="btn btn-sm btn-info text-white"><i class="fa fa-plus"></i> Add Patient</a>
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -35,13 +41,13 @@
                   <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
+                        <th>Patient Image</th>
                         <th>Patient ID</th>
                           <th>Patient Name</th>
-                          <th>Patient Number</th>
+                          <th>Patient Phone</th>
                           <th>Room Number</th>
                           <th>Payment Amount</th>
                           <th>Date</th>
-                          <th>Owed</th>
                           <th>Fee Status</th>
                           <th>Action</th>
                         </tr>
@@ -49,129 +55,33 @@
 
 
                       <tbody>
-                        <tr>
-                        <td>121</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                        <td>121</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <td>121</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                        <td>121</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                        <td>121</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <td>121</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                          <td>121</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                        <td>121</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                        <td>121</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
+                      <?php
+                            if(is_array($fetchData)){      
+                            foreach($fetchData as $data){
+                          ?>
+                            <tr>
+                            <td> <img src="p-img/<?php echo $data['img']??'';?>" alt="Patient Image" style="width:50px; height: 50px; border-radius:50px;"></td>
+                            <td style="font-size:16px;"><?php echo $data["p_id"]??''; ?></td>
+                            <td><a href="patient-personal.php?id=<?php echo $data['p_id']?>" style="text-decoration:none; font-size:16px;"><?php echo $data["p_name"]??''; ?></a></td>
+                            <td style="font-size:16px;"><?php echo $data["p_phone"]??''; ?></td>
+                            <td style="font-size:16px;"><?php echo $data["room_number"]??''; ?></td>
+                            <td style="font-size:16px;">$ <?php echo $data["p_payment"]??''; ?></td>
+                            <td style="font-size:16px;"><?php echo $data["date"]??''; ?></td>
+                            <td style="font-size:16px;"><?php echo $data["payment_status"]??''; ?></td>
+                            <td>
+                                <a href="edit-category.php?display=<?php echo $data['id']?>" class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
+                                <a href="category.php?del=<?php echo $data['id']?>" class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
+                              </td>
+                          </tr>
+                          <?php
+                            }}else{ ?>
+                            <tr>
+                              <td colspan="8">
+                          <?php echo $fetchData; ?>
+                        </td>
+                          <tr>
+                          <?php
+                          }?>
                       </tbody>
                     </table>
                   </div>

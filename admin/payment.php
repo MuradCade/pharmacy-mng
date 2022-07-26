@@ -1,3 +1,9 @@
+<?php
+include_once('admin-class/display-payment.php');
+$payment = new displayPayment();
+$fetchData = $payment->allpayment();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'include/header.php';?>
@@ -42,54 +48,35 @@
                           <th>Amount Payment</th>
                           <th>owed</th>
                           <th>Total</th>
-                          <th>Action</th>
                         </tr>
                       </thead>
 
 
                       <tbody>
-                    <tr>
-                        
-                          <td>120</td>
-                          <td>10/12/2022</td>
-                          <td>Ahmed Adan Nour</td>
-                          <td>063452934</td>
-                          <td>$10</td>
-                          <td>$4</td>
-                          <td>$6</td>
-                          <td>
-                              <a href='printpaper.php'class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> View</a>
-                              <a  id='printbtn' class="btn btn-sm btn-danger text-white"><i class="fa fa-print"></i>Print</a>
-                          </td>
-                    </tr>
-                    <tr>
-                        
-                          <td>121</td>
-                          <td>10/12/2022</td>
-                          <td>mumin Adan Nour</td>
-                          <td>063452934</td>
-                          <td>$10</td>
-                          <td>$4</td>
-                          <td>$6</td>
-                          <td>
-                              <a href='printpaper.php'class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> View</a>
-                              <a  id='printbtn' class="btn btn-sm btn-danger text-white"><i class="fa fa-print"></i>Print</a>
-                          </td>
-                    </tr>
-                    <tr>
-                        
-                          <td>122</td>
-                          <td>10/12/2022</td>
-                          <td>abdi Adan Nour</td>
-                          <td>063452934</td>
-                          <td>$10</td>
-                          <td>$4</td>
-                          <td>$6</td>
-                          <td>
-                              <a href='printpaper.php'class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> View</a>
-                              <a  id='printbtn' class="btn btn-sm btn-danger text-white"><i class="fa fa-print"></i>Print</a>
-                          </td>
-                    </tr>
+                      <?php
+                            if(is_array($fetchData)){      
+                            foreach($fetchData as $data){
+                          ?>
+                            <tr>
+                            <td style="font-size:14px;"><?php echo $data["p_id"]??''; ?></td>
+                            <td style="font-size:14px;"><?php echo $data["date"]??''; ?></td>
+                            <td><?php echo $data["p_name"]??''; ?></td>
+                            <td style="font-size:14px;"><?php echo $data["p_phone"]??''; ?></td>
+                            <td style="font-size:14px;">$ <?php echo $data["p_payment"]??''; ?></td>
+                            <td style="font-size:14px;">$ <?php echo $data["debt"]??''; ?></td>
+                            <td style="font-size:14px;">$ <?php echo $data["total"]??''; ?></td>
+                            <td>
+                              </td>
+                          </tr>
+                          <?php
+                            }}else{ ?>
+                            <tr>
+                              <td colspan="8">
+                          <?php echo $fetchData; ?>
+                        </td>
+                          <tr>
+                          <?php
+                          }?>
                        
                       </tbody>
                     </table>
