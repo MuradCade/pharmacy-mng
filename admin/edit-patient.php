@@ -1,10 +1,15 @@
 <?php
+ include_once('admin-class/edit-patient.php');
+ include_once('admin-class/display-room.php');
 
-include_once('admin-class/display-room.php');
+ if(isset($_GET['display'])){
+        $id = $_GET['display'];
+     $data = new displayPatient();
+     $fetchData = $data->allpatient($id);
+ }
 
 $room = new displayrooms();
 $fetch = $room->rooms();
-
 
 ?>
 <!DOCTYPE html>
@@ -24,7 +29,7 @@ $fetch = $room->rooms();
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3><i class="fa fa-medkit"></i> Add Patient</h3>
+                <h3><i class="fa fa-medkit"></i> Update Patient</h3>
               </div>
             </div>
 
@@ -44,35 +49,41 @@ $fetch = $room->rooms();
                     <?php echo $_GET['error'];?>
                 </div>
                     <?php }?>
-                  <form action="admin-class/add-patientinfo.php"  method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype='multipart/form-data'>
+                    <?php
+                            if(is_array($fetchData)){      
+                            foreach($fetchData as $data){
+                          ?>
+
+                          <?php if(isset($_GET['display'])) $id = $_GET['display']?>
+                  <form action="admin-class/update-patient.php?display=<?php echo $id?>"  method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype='multipart/form-data'>
                   <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                    <input type="file" class="form-control has-feedback-left" name="file"/>
+                    <input type="file" class="form-control has-feedback-left" name="file" />
                     <span class="fa fa-image form-control-feedback left" aria-hidden="true"></span>
                   </div>
                 </div>
                   <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                    <input type="number" class="form-control has-feedback-left" placeholder="Patient ID" name="p_id">
+                    <input type="number" class="form-control has-feedback-left" placeholder="Patient ID" name="p_id" value="<?php echo $data['p_id']?>">
                     <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                   </div>
                   </div>
                   <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                    <input type="text" class="form-control has-feedback-left" placeholder="Patient Fullname" name="p_name">
+                    <input type="text" class="form-control has-feedback-left" placeholder="Patient Fullname" name="p_name" value="<?php echo $data['p_name']?>">
                     <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                    <input type="text" class="form-control has-feedback-left" placeholder="ex. 09809879797" name="p_phone">
+                    <input type="text" class="form-control has-feedback-left" placeholder="ex. 09809879797" name="p_phone" value="<?php echo $data['p_phone']?>">
                     <span class="fa fa-phone form-control-feedback left" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
                     <select class="form-control has-feedback-left" name="p_room">
-                    <option>Select Room</option>
+                        <option>Select Room</option>
                     <?php
                             if(is_array($fetch)){      
                             foreach($fetch as $data2){
@@ -86,19 +97,19 @@ $fetch = $room->rooms();
                 </div>
                 <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                    <input type="date" class="form-control has-feedback-left" name="date">
+                    <input type="date" class="form-control has-feedback-left" name="date" value="<?php echo $data['date']?>">
                     <span class="fa fa-calendar  form-control-feedback left" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                    <input type="text" class="form-control has-feedback-left" placeholder="Amount Of Payment" name="p_payment">
+                    <input type="text" class="form-control has-feedback-left" placeholder="Amount Of Payment" name="p_payment" value="<?php echo $data['p_payment']?>">
                     <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                    <input type="text" class="form-control has-feedback-left" placeholder="Owed (Patient Lacag Lagu Leeyahay)" name="p_owed">
+                    <input type="text" class="form-control has-feedback-left" placeholder="Owed (Patient Lacag Lagu Leeyahay)" name="p_owed" value="<?php echo $data['debt']?>">
                     <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
                   </div>
                 </div>
@@ -115,6 +126,8 @@ $fetch = $room->rooms();
                       <button type="submit" class="btn btn-success" name="submit">Submit</button>
                   </div>
                 </div>
+                <?php } 
+                  }?>
                   </form>
                   </div>
                 </div>

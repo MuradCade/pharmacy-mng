@@ -9,16 +9,28 @@
  .header{
     display: flex;
     align-items: center;
-    justify-content: space-around;
- }
- .document{
+    justify-content: space-between;
+}
+.document{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
  }
+ .footer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    top:40px;
+}
+.footer > p{
+        color:black;
+        font-weight: 400;
+        font-size: 14px;
+ }
  .page {
-
+     
      /* Styles for better appearance on screens only -- are reset to defaults in print styles later */
  
      /* Reflect the paper width in the screen rendering (must match size from @page rule) */

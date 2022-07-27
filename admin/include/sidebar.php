@@ -20,9 +20,8 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                 <li><a href="index.php"><i class="fa fa-tachometer"></i> Dashboard</a></li>
-                <li><a href="category.php"><i class="fa fa-list"></i>Patient Category</a></li>
                 <li><a href="patientinfo.php"><i class="fa fa-medkit"></i> Patient Info</a></li>
-                <li><a href="cashier.php"><i class="fa fa-user"></i>Users</a></li>
+                <li><a href="users.php"><i class="fa fa-user"></i>Users</a></li>
                 <li><a href="rooms.php"><i class="fa fa-hotel"></i>Rooms</a></li>
                 <li><a href="payment.php"><i class="fa fa-money"></i>Payment</a></li>
                 <li><a href="company.php"><i class="fa fa-building-o"></i> Company</a></li>

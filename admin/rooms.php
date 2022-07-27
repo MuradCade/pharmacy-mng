@@ -1,6 +1,12 @@
 <?php
 include("admin-class/display-room.php");
 include("admin-class/delete-room.php");
+session_start();
+if(!isset($_SESSION['userid'])){
+
+    header("location:../index.php");
+    exit();
+}
 $data = new displayrooms();
 $fetchData = $data->rooms();
 

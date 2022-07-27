@@ -62,6 +62,7 @@ if(isset($_SESSION["id"]) && isset($_SESSION["username"])){
                 id="demo-form2"
                 data-parsley-validate
                 class="form-horizontal form-label-left"
+                autocomplete="off" 
               >
                 <div class="item form-group">
                   <div class="col-md-12 col-sm-12 form-group has-feedback">

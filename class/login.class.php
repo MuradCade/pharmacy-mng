@@ -10,7 +10,7 @@ class IdentifyUserLogin extends Database{
             while($row = mysqli_fetch_assoc($result))
                 if($row["username"] == $username && $row["pwd"] == $pwd){
                     session_start();
-                    $_SESSION["id"] = $row["id"];
+                    $_SESSION["userid"] = $row["userid"];
                     $_SESSION["username"] = $row["username"];
                     $_SESSION["role"] = $row["role"];
 

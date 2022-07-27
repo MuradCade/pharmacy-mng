@@ -7,6 +7,9 @@ if(!isset($_SESSION["id"]) && !isset($_SESSION["username"]))
         exit();
 }
 
+include('admin-class/display-users.php');
+$users = new CurrentUsers();
+$fetch = $users->Users();
 
 ?>
 <!DOCTYPE html>
@@ -68,7 +71,7 @@ if(!isset($_SESSION["id"]) && !isset($_SESSION["username"]))
               <div class="col-md-6 col-sm-6  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Today Payment</h2>
+                    <h2>Current Users</h2>
                     
                     <div class="clearfix"></div>
                   </div>
@@ -76,47 +79,26 @@ if(!isset($_SESSION["id"]) && !isset($_SESSION["username"]))
                   <table class="table table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                          <th>Patient Name</th>
-                          <th>Patiet Id</th>
-                          <th>Price</th>
-                          <th>Total</th>
+                          <th>Name</th>
+                          <th>Phone</th>
+                          <th>Email</th>
+                          <th>Role</th>
                         </tr>
                       </thead>
 
 
+                      <?php if(is_array($fetch)){  
+                      foreach ($fetch as $fetched) {?>
                       <tbody>
-                        <tr>
-                          <td>Biogesic</td>
-                          <td>30</td>
-                          <td>Php7.00</td>
-                          <td>Php210.00</td>
-                        </tr>
-                        <tr>
-                          <td>Alaxan</td>
-                          <td>20</td>
-                          <td>Php10.00</td>
-                          <td>Php200.00</td>
-                        </tr>
-                        <tr>
-                          <td>Tuseran</td>
-                          <td>50</td>
-                          <td>Php8.00</td>
-                          <td>Ph400.00</td>
-                        </tr>
-                        <tr>
-                          <td>BioFlu</td>
-                          <td>45</td>
-                          <td>Php12.00</td>
-                          <td>Php540.00</td>
-                        </tr>
-                        <tr>
-                          <td>Enervon</td>
-                          <td>100</td>
-                          <td>Php6.00</td>
-                          <td>Php600.00</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <tr>
+                      <td style="text-transform:capitalize;"><?php echo $fetched['fullname']?></td>
+                      <td style="text-transform:capitalize;"><?php echo $fetched['phone']?></td>
+                      <td style="text-transform:capitalize;"><?php echo $fetched['email']?></td>
+                      <td style="text-transform:capitalize;"><?php echo $fetched['role']?></td>
+                    </tr>
+                  </tbody>
+                  <?php }} ?>     
+                </table>
                   </div>
                 </div>
               </div>

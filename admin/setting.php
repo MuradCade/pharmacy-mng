@@ -1,13 +1,11 @@
 <?php
 include_once('admin-class/display-company.php');
-
 session_start();
 if(!isset($_SESSION['userid'])){
 
     header("location:../index.php");
     exit();
 }
-
 $companydata = new Displaycompany();
 $fetchData = $companydata->company();
 

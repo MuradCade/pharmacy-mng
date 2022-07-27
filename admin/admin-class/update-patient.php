@@ -42,17 +42,21 @@ class AddPatient extends Database{
                     exit();
                 }
                 else{
+                        if(isset($_GET['display'])) $id = $_GET['display'];
                          $total = $ppayment-$powed;
                          $img = $_FILES["file"]["name"];
                          $tempname = $_FILES["file"]["tmp_name"];
                          $folder = "../p-img/" . $img;
-                         $sql = "insert into patient(img,p_id,p_name,p_phone,room_number,date,p_payment,payment_status,debt,total)
-                        values('$img','$pid','$pname','$pphone','$proom','$date','$ppayment','$paymentStatus','$powed','$total')";
+                         echo $folder;
+                         $sql = "Update patient Set img = '$img', p_id = '$pid',
+                        p_name = '$pname', p_phone = '$pphone',room_number = '$proom', date = '$date',
+                         p_payment = '$ppayment', payment_status = '$paymentStatus',
+                         debt = '$powed', total = '$total'  where id = '$id'";
                         $result = mysqli_query($this->connect,$sql);
                                 
                     if (move_uploaded_file($tempname, $folder)) {
                        
-                        header("location:../patientinfo.php?success=New-Patient-Added-Successfully");
+                        header("location:../patientinfo.php?success=Patient-Updated-Successfully");
                         exit();
                     } else {
                         header("location:../patientinfo.php?error=Image-Failed-To-Upload");

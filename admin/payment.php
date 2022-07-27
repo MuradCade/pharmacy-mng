@@ -1,5 +1,13 @@
 <?php
 include_once('admin-class/display-payment.php');
+
+session_start();
+if(!isset($_SESSION['userid'])){
+
+    header("location:../index.php");
+    exit();
+}
+
 $payment = new displayPayment();
 $fetchData = $payment->allpayment();
 
@@ -48,6 +56,7 @@ $fetchData = $payment->allpayment();
                           <th>Amount Payment</th>
                           <th>owed</th>
                           <th>Total</th>
+                          <th>Action</th>
                         </tr>
                       </thead>
 
@@ -66,6 +75,7 @@ $fetchData = $payment->allpayment();
                             <td style="font-size:14px;">$ <?php echo $data["debt"]??''; ?></td>
                             <td style="font-size:14px;">$ <?php echo $data["total"]??''; ?></td>
                             <td>
+                    <a href="printpaper.php?id=<?php echo $data['id'];?>" class="btn btn-primary" style="font-weight:bold"><i class="fa fa-print"> View</i></a>
                               </td>
                           </tr>
                           <?php
