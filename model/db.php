@@ -3,10 +3,10 @@
 
 class Database{
 
-    private $hostname = "localhost";
-    private $username = "root";
-    private $pwd = "";
-    private $dbname = "pharmcay_mng";
+    private $hostname = "sql308.epizy.com";
+    private $username = "epiz_32264816";
+    private $pwd = "dCrcIzDoMlpm";
+    private $dbname = "epiz_32264816_pharmacy";
     // private $hostname = "https://databases.000webhost.com/";
     // private $username = "id19234114_root";
     // private $pwd = "&BJQ25I49gZ*tWZa";
