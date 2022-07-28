@@ -1,3 +1,22 @@
+<?php
+include("reception-class/display-room.php");
+include("reception-class/delete-room.php");
+session_start();
+if(!isset($_SESSION['userid'])){
+
+    header("location:../index.php");
+    exit();
+}
+$data = new displayrooms();
+$fetchData = $data->rooms();
+
+if(isset($_GET['del'])){
+  $del = $_GET['del'];
+  $delete = new Deleterooms();
+  $delete->delete($del);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'include/header.php';?>
@@ -20,7 +39,18 @@
             </div>
 
             <div class="clearfix"></div>
+     
+            <!-- update and Error Message -->
+            <?php if(isset($_GET['error'])){?>
+                  <div class="alert alert-danger text-center" role="alert">
+                    <?php echo $_GET['error'];?>
+                </div>
+                  <?php }else if(isset($_GET['success'])){?>
+                    <div class="alert alert-success text-center" role="alert">
+                    <?php echo $_GET['success'];?>
+                </div>
 
+                    <?php }?>
             <div class="row">
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
@@ -35,7 +65,7 @@
                   <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>
-                          <th>Room Number</th>
+                          <th>Room Name</th>
                           <th>Description</th>
                           <th>Action</th>
                         </tr>
@@ -43,78 +73,27 @@
 
 
                       <tbody>
-                        <tr>
-                          <td>Antipsychotic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Antirheumatic Agents</td>
-                          <td>Duis pulvinar facilisis tellus a luctus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Antiviral Agents</td>
-                          <td>Maecenas dapibus dignissim nunc, vitae hendrerit metus blandit vel.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Autonomic Agents</td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Antiparasitic Agents</td>
-                          <td>Duis pulvinar facilisis tellus a luctus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Antineoplastic Agents</td>
-                          <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Antioxidants</td>
-                          <td>Maecenas dapibus dignissim nunc, vitae hendrerit metus blandit vel.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Antimetabolites </td>
-                          <td>Fusce gravida scelerisque maximus.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Antimalarials </td>
-                          <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</td>
-                          <td>
-                              <a class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                              <a class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
-                          </td>
-                        </tr>
+                                <?php
+                if(is_array($fetchData)){      
+                foreach($fetchData as $data){
+              ?>
+                <tr>
+                <td><?php echo $data['room_name']??''; ?></td>
+                <td><?php echo $data['room_desc']??''; ?></td>
+                <td>
+                    <a href="edit-rooms.php?display=<?php echo $data['id']?>" class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
+                    <a href="rooms.php?del=<?php echo $data['id']?>" class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>
+                  </td>
+              </tr>
+              <?php
+                }}else{ ?>
+                <tr>
+                  <td colspan="8">
+              <?php echo $fetchData; ?>
+            </td>
+              <tr>
+              <?php
+              }?>
                       </tbody>
                     </table>
                   </div>

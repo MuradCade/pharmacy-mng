@@ -20,10 +20,11 @@
                 <h3>General</h3>
                 <ul class="nav side-menu">
                 <li><a href="index.php"><i class="fa fa-tachometer"></i> Dashboard</a></li>
-                <li><a href="patient-category.php"><i class="fa  fa-ellipsis-h"></i> Patient Categor</a></li>
                 <li><a href="patientinfo.php"><i class="fa fa-medkit"></i> Patient Information</a></li>
                 <li><a href="rooms.php"><i class="fa fa-hotel"></i>Rooms</a></li>
                 <li><a href="payment.php"><i class="fa fa-money"></i>Payment</a></li>
+                <li><a href="complain.php"><i class="fa fa-envelope"></i> Complains</a></li>
+
                 </ul>
               </div>
 

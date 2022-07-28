@@ -1,5 +1,25 @@
+<?php
+    session_start();
+
+    if(!isset($_SESSION['userid'])){
+    
+        header("location:../index.php");
+        exit();
+    }
+
+include_once('reception-class/display-particular-user.php');
+
+if(isset($_SESSION['userid'])) $id = $_SESSION['userid'];
+$usersdata = new DisplayUser();
+$fetchData = $usersdata->User($id);
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <link rel="stylesheet" href="css/profile.css">
+    </head>
 <?php include 'include/header.php';?>
 
   <body class="nav-md">
@@ -15,7 +35,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3><i class="fa fa-user"></i> Profile</h3>
+                <h3><i class="fa fa-user"></i> Your Profile</h3>
               </div>
             </div>
 
@@ -25,87 +45,105 @@
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Profile Information</h2>
+                    <h2>Profile Configuration Configuration</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <div class="col-md-3 col-sm-3  profile_left">
-                      <div class="profile_img">
-                        <div id="crop-avatar">
-                          <!-- Current avatar -->
-                          <img class="img-responsive avatar-view" src="images/picture.jpg" alt="Avatar" style="border-radius:10px">
+                  <!-- profile card -->
+                  <div class="container-xl px-4 mt-4">
+    <!-- Account page navigation-->
+    <nav class="nav nav-borders">
+        <a class="nav-link active ms-0" href="https://www.bootdey.com/snippets/view/bs5-edit-profile-account-details" target="__blank">Profile</a>
+
+    </nav>
+    <hr class="mt-0 mb-4">
+    <div class="row">
+        <div class="col-xl-4">
+        <?php if(isset($_GET['error'])){?>
+                  <div class="alert alert-danger text-center" role="alert">
+                    <?php echo $_GET['error'];?>
+                </div>
+        <?php }else if(isset($_GET['success'])){?>
+                    <div class="alert alert-success text-center" role="alert">
+                    <?php echo $_GET['success'];?>
+                </div>
+
+                    <?php }?>
+            <!-- Profile picture card-->
+            <div class="card mb-4 mb-xl-0">
+                <div class="card-header">Profile Picture</div>
+                <div class="card-body text-center">
+                    <?php
+                                if(is_array($fetchData)){      
+                                    foreach($fetchData as $data){
+                                        ?>
+                                        
+                    <!-- Profile picture image-->
+                    <img class="img-account-profile rounded-circle mb-2" src="reception-img/<?php echo $data['img']?>" alt="profile">
+                    <!-- Profile picture help block-->
+                    <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                    <!-- Profile picture upload button-->
+
+                    <form action="reception-class/add-profile.php?id=<?php echo $data['userid']?>" method="post" enctype='multipart/form-data'>
+                    <label class="form-label">Upload New Image</label>
+                    <input type="file" name="file">
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-8">
+            <!-- Account details card-->
+            <div class="card mb-4">
+                <div class="card-header">Account Details</div>
+                <div class="card-body">
+                        <!-- Form Group (username)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputUsername">Username</label>
+                            <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="<?php echo $data['username']?>" name="username">
                         </div>
-                      </div>
-                      <h3>Anne Smith</h3>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (first name)-->
+                            <div class="col-md-12">
+                                <label class="small mb-1" for="inputFirstName">Full name</label>
+                                <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your full name" value="<?php echo $data['fullname']?>" name="fname">
+                            </div>
+                        </div>
+                        
+                        <!-- Form Group (email address)-->
+                        <div class="mb-3">
+                            <label class="small mb-1" for="inputEmailAddress">Email address</label>
+                            <input class="form-control" id="inputEmailAddress" type="text" placeholder="Enter your email address" value="<?php echo $data['email']?>" name="email">
+                        </div>
+                        <!-- Form Row-->
+                        <div class="row gx-3 mb-3">
+                            <!-- Form Group (phone number)-->
+                            <div class="col-md-12">
+                                <label class="small mb-1" for="inputPhone">Phone number</label>
+                                <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="<?php echo $data['phone']?>" name="phone">
+                            </div>
+                           
+                        </div>
+                        <!-- Save changes button-->
+                        <button class="btn btn-primary"  name="submit">Save changes</button>
+                    </form>
+                    <?php } }?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                      <ul class="list-unstyled user_data">
-                        <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
-                        </li>
-
-                        <li>
-                          <i class="fa fa-user user-profile-icon"></i> Cashier
-                        </li>
-
-                        <li class="m-top-xs">
-                          <i class="fa fa-external-link user-profile-icon"></i>
-                          <a href="#" target="_blank">www.facebook.com</a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="col-md-9 col-sm-9  profile_left">
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                      
-                  <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align"><strong><i class="fa fa-user"></i> Profile Information</strong></label>
-                  </div>
-                  <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align" >Full Name <span class="required">*</span>
-                    </label>
-                    <div class="col-md-4 col-sm-4 ">
-                      <input type="text" required="required" class="form-control" placeholder="First Name">
-                    </div>
-                    <div class="col-md-4 col-sm-4 ">
-                      <input type="text" required="required" class="form-control" placeholder="Last Name">
-                    </div>
-                  </div>
-                  <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align">Email</label>
-                    <div class="col-md-8 col-sm-8 ">
-                      <input class="form-control" type="text" placeholder="support@gmail.com">
-                    </div>
-                  </div>
-                  <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align">Contact</label>
-                    <div class="col-md-8 col-sm-8 ">
-                      <input class="form-control" type="text" placeholder="09486087489">
-                    </div>
-                  </div>
-                  <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align"><strong><i class="fa fa-key"></i> Account Information</strong></label>
-                  </div>
-
-                  <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align">Username</label>
-                    <div class="col-md-8 col-sm-8 ">
-                      <input class="form-control" type="text" placeholder="Username">
-                    </div>
-                  </div>
-                  <div class="item form-group">
-                    <label class="col-form-label col-md-3 col-sm-3 label-align">Password</label>
-                    <div class="col-md-8 col-sm-8 ">
-                      <input class="form-control" type="text" placeholder="************">
-                    </div>
-                  </div>
-                  <div class="ln_solid"></div>
-                  <div class="item form-group">
-                    <div class="col-md-6 col-sm-6 offset-md-3">
-                      <button class="btn btn-primary" type="button">Cancel</button>
-                      <button type="submit" class="btn btn-success">Submit</button>
-                    </div>
-                  </div>
-
-                  </form>
-                    </div>
+                  <!-- end profile -->
+                  
+            </div>
+        </div>
+    </div>
+   
+      </div>
+    </div>
+  </div>
+</section>
+                  <!-- end company card -->
                   </div>
                 </div>
               </div>

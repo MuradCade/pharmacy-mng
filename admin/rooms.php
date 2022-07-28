@@ -15,6 +15,7 @@ if(isset($_GET['del'])){
   $delete = new Deleterooms();
   $delete->delete($del);
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

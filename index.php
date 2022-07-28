@@ -58,6 +58,7 @@ if(isset($_SESSION["id"]) && isset($_SESSION["username"])){
                <?php } ?>
             </div>
             <div class="x_content">
+            <!--  -->
               <form action="includes/login.php" method="post"
                 id="demo-form2"
                 data-parsley-validate

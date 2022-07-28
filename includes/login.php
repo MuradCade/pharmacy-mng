@@ -1,15 +1,14 @@
 <?php
 include('../class/login.class.php');
-
-function senitaize($data){
-    $data = htmlspecialchars($data);
-    $data = stripslashes($data);
-    $data = trim($data);
-    $data = str_replace(' ','',$data);
-    return $data;
-}
-
 if(isset($_POST['login'])){
+    
+    function senitaize($data){
+        $data = htmlspecialchars($data);
+        $data = stripslashes($data);
+        $data = trim($data);
+        $data = str_replace(' ','',$data);
+        return $data;
+    }
     $username = senitaize($_POST['username']);
     $pwd = senitaize($_POST['pwd']);
 
@@ -26,4 +25,8 @@ if(isset($_POST['login'])){
         $checkuser->login($username,$pwd);
     }
 
+}
+else{
+    header('location:../index.php');
+    exit();
 }

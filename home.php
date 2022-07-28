@@ -1,20 +1,18 @@
 <?php
 session_start();
-if(isset($_SESSION["userid"]) && isset($_SESSION["username"]))
-{
-    if(isset($_SESSION["role"]) == "admin")
-    {
+session_start();
+if (isset($_SESSION['userid']) && isset($_SESSION['username'])) {
+    if ($_SESSION['role'] == 'admin') {
         header("location:admin/index.php");
-        die();
-    }
-    else{
+        exit();
+    } else if ($_SESSION['role'] == 'user') {
         header("location:reception/index.php");
-        die();
+        exit();
+    } else {
+        header("location:login.php?error-role-un-specified");
+        exit();
     }
-   
+} else {
+    header("location:login.php?error=enter-your-info-to-login");
+    exit();
 }
- else{
-    header("Location:index.php?error=Login-please");
-    die();
-    }
-

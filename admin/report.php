@@ -7,6 +7,7 @@ if(!isset($_SESSION['userid'])){
     header("location:../index.php");
     exit();
 }
+
 $displaydata = new GetReport();
 $fetchData = $displaydata->Report()
 

@@ -1,3 +1,16 @@
+<?php
+include_once('reception-class/display-payment.php');
+
+session_start();
+if(!isset($_SESSION['userid'])){
+
+    header("location:../index.php");
+    exit();
+}
+$payment = new displayPayment();
+$fetchData = $payment->allpayment();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <?php include 'include/header.php';?>
@@ -27,7 +40,6 @@
                   <div class="x_title">
                     <h2>List of Payment Data</h2>
                     <ul class="nav navbar-right panel_toolbox">
-                    <!-- <a href="search-payment.php" class="btn btn-sm btn-info text-white"><i class="fa fa-search"></i> Search Payment</a> -->
                     </ul>
                     <div class="clearfix"></div>
                   </div>
@@ -48,48 +60,31 @@
 
 
                       <tbody>
-                    <tr>
-                        
-                          <td>120</td>
-                          <td>10/12/2022</td>
-                          <td>Ahmed Adan Nour</td>
-                          <td>063452934</td>
-                          <td>$10</td>
-                          <td>$4</td>
-                          <td>$6</td>
-                          <td>
-                              <a href='printer.php'class="btn btn-sm btn-success text-white"><i class="fa fa-print"></i> Print</a>
-                              <!-- <a  id='printbtn' class="btn btn-sm btn-danger text-white"><i class="fa fa-print"></i>Print</a> -->
-                          </td>
-                    </tr>
-                    <tr>
-                        
-                          <td>121</td>
-                          <td>10/12/2022</td>
-                          <td>mumin Adan Nour</td>
-                          <td>063452934</td>
-                          <td>$10</td>
-                          <td>$4</td>
-                          <td>$6</td>
-                          <td>
-                              <a href='printer.php'class="btn btn-sm btn-success text-white"><i class="fa fa-print"></i> Print</a>
-                              <!-- <a  class="btn btn-sm btn-danger text-white"><i class="fa fa-print"></i>Delete</a> -->
-                          </td>
-                    </tr>
-                    <tr>
-                        
-                          <td>122</td>
-                          <td>10/12/2022</td>
-                          <td>abdi Adan Nour</td>
-                          <td>063452934</td>
-                          <td>$10</td>
-                          <td>$4</td>
-                          <td>$6</td>
-                          <td>
-                              <a href='printer.php'class="btn btn-sm btn-success text-white"><i class="fa fa-print"></i> Print</a>
-                              <!-- <a  id='printbtn' class="btn btn-sm btn-danger text-white"><i class="fa fa-print"></i>Print</a> -->
-                          </td>
-                    </tr>
+                      <?php
+                            if(is_array($fetchData)){      
+                            foreach($fetchData as $data){
+                          ?>
+                            <tr>
+                            <td style="font-size:14px;"><?php echo $data["p_id"]??''; ?></td>
+                            <td style="font-size:14px;"><?php echo $data["date"]??''; ?></td>
+                            <td><?php echo $data["p_name"]??''; ?></td>
+                            <td style="font-size:14px;"><?php echo $data["p_phone"]??''; ?></td>
+                            <td style="font-size:14px;">$ <?php echo $data["p_payment"]??''; ?></td>
+                            <td style="font-size:14px;">$ <?php echo $data["debt"]??''; ?></td>
+                            <td style="font-size:14px;">$ <?php echo $data["total"]??''; ?></td>
+                            <td>
+                    <a href="printpaper.php?id=<?php echo $data['id'];?>" class="btn btn-primary" style="font-weight:bold"><i class="fa fa-print"> View</i></a>
+                              </td>
+                          </tr>
+                          <?php
+                            }}else{ ?>
+                            <tr>
+                              <td colspan="8">
+                          <?php echo $fetchData; ?>
+                        </td>
+                          <tr>
+                          <?php
+                          }?>
                        
                       </tbody>
                     </table>

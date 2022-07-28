@@ -6,6 +6,7 @@ if(!isset($_SESSION['userid'])){
     header("location:../index.php");
     exit();
 }
+
 $users = new CurrentUsers();
 $fetch = $users->Users();
 

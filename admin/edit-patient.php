@@ -115,7 +115,7 @@ $fetch = $room->rooms();
                 </div>
                 <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                    <input type="text" class="form-control has-feedback-left" placeholder="Payament Status" name="p_pstatus">
+                    <input type="text" class="form-control has-feedback-left" placeholder="Payament Status" name="p_pstatus" value="<?php echo $data['payment_status']?>">
                     <span class="fa fa-check-square form-control-feedback left" aria-hidden="true"></span>
                   </div>
                 </div>

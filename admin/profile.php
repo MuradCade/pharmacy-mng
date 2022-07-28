@@ -6,7 +6,8 @@
         header("location:../index.php");
         exit();
     }
-   
+  
+
 include_once('admin-class/display-particular-user.php');
 
 if(isset($_SESSION['userid'])) $id = $_SESSION['userid'];

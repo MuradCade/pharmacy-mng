@@ -42,26 +42,43 @@ class AddPatient extends Database{
                     exit();
                 }
                 else{
-                        if(isset($_GET['display'])) $id = $_GET['display'];
-                         $total = $ppayment-$powed;
-                         $img = $_FILES["file"]["name"];
-                         $tempname = $_FILES["file"]["tmp_name"];
-                         $folder = "../p-img/" . $img;
-                         echo $folder;
-                         $sql = "Update patient Set img = '$img', p_id = '$pid',
-                        p_name = '$pname', p_phone = '$pphone',room_number = '$proom', date = '$date',
-                         p_payment = '$ppayment', payment_status = '$paymentStatus',
-                         debt = '$powed', total = '$total'  where id = '$id'";
-                        $result = mysqli_query($this->connect,$sql);
-                                
-                    if (move_uploaded_file($tempname, $folder)) {
-                       
-                        header("location:../patientinfo.php?success=Patient-Updated-Successfully");
-                        exit();
-                    } else {
-                        header("location:../patientinfo.php?error=Image-Failed-To-Upload");
-                        exit();
-        
+                    if(isset($_GET['display'])) $id = $_GET['display'];
+                    $total = $ppayment-$powed;
+                    $img = $_FILES["file"]["name"];
+                    $tempname = $_FILES["file"]["tmp_name"];
+                    $folder = "../p-img/" . $img;
+                    if(empty($img)){
+                       $sql = "Update patient Set  p_id = '$pid',
+                       p_name = '$pname', p_phone = '$pphone',room_number = '$proom', date = '$date',
+                        p_payment = '$ppayment', payment_status = '$paymentStatus',
+                        debt = '$powed', total = '$total'  where id = '$id'";
+                       $result = mysqli_query($this->connect,$sql);
+                               
+                   if ($result) {
+                      
+                       header("location:../patientinfo.php?success=Patient-Updated-Successfully");
+                       exit();
+                   } else {
+                       header("location:../patientinfo.php?error=Image-Failed-To-Upload");
+                       exit();
+       
+                   } 
+                    }else{
+                       $sql = "Update patient Set img = '$img', p_id = '$pid',
+                       p_name = '$pname', p_phone = '$pphone',room_number = '$proom', date = '$date',
+                        p_payment = '$ppayment', payment_status = '$paymentStatus',
+                        debt = '$powed', total = '$total'  where id = '$id'";
+                       $result = mysqli_query($this->connect,$sql);
+                               
+                   if (move_uploaded_file($tempname, $folder)) {
+                      
+                       header("location:../patientinfo.php?success=Patient-Updated-Successfully");
+                       exit();
+                   } else {
+                       header("location:../patientinfo.php?error=Image-Failed-To-Upload");
+                       exit();
+       
+                   }
                     }
                 }
         

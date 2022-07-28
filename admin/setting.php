@@ -28,7 +28,7 @@ $fetchData = $companydata->company();
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3><i class="fa fa-cog"></i> Company Information</h3>
+                <h3><i class="fa fa-cog"></i> Setting Configuration</h3>
               </div>
             </div>
 
@@ -38,7 +38,7 @@ $fetchData = $companydata->company();
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>System Configuration</h2>
+                    <h2>Configure Settings</h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -46,71 +46,56 @@ $fetchData = $companydata->company();
                   
                   <section class="vh-200" style="background-color: #f4f5f7;">
                     <div class="container py-5 h-100">
-                        <div class="row d-flex justify-content-center align-items-center h-100">
-                            <?php
-                            if(is_array($fetchData)){      
-                                foreach($fetchData as $data){
-                                    ?>
+              <!-- change password -->
+                   <!-- form card change password -->
+                   <div class="card card-outline-secondary">
+                        <div class="card-header">
+                            <h3 class="mb-0">Change Your Password</h3>
+                        </div>
+                        <div class="card-body">
+                            <form action="admin-class/change-pwd.php" method="post" class="form" role="form" autocomplete="off">
+                                <div class="form-group">
+                                    <label for="inputPasswordOld">New Password</label>
+                                    <input type="password" class="form-control" id="inputPasswordOld" required="" placeholder="Enter Your New Password..." name='pwd'>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPasswordNewVerify">Your Id</label>
+                                    <input type="text" class="form-control" value="489867321" readonly name="id">
+                                    <span class="form-text small text-muted">
+                                        </span>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg float-right" name="submit">Sumbit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+              <!-- end -->
+              <!-- change pwd -->
+              <div class="card card-outline-secondary">
+                        <div class="card-header">
+                            <h3 class="mb-0">Change Reception Password</h3>
+                        </div>
+                        <div class="card-body">
+                            <form action="admin-class/change-pwd.php" method="post" class="form" role="form" autocomplete="off">
+                                <div class="form-group">
+                                    <label for="inputPasswordOld">New Password</label>
+                                    <input type="password" class="form-control" id="inputPasswordOld" required="" placeholder="Enter New Password..." name='pwd'>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputPasswordNewVerify">Reception Id</label>
+                                    <input type="text" class="form-control" value="76856826" readonly name='id'>
+                                    <span class="form-text small text-muted">
+                                        </span>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-lg float-right" name='submit'>Sumbit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+              <!-- end -->
 
-<div class="col col-lg-12  mb-4 mb-lg-0">
-    <div class="card mb-3" style="border-radius: .5rem;">
-        <div class="row g-0">
-            <div class="col-md-4 gradient-custom text-center text-white"
-            style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
-            <img src="admin-img/<?php echo $data['logo'];?>"
-            alt="Avatar" class="img-fluid my-5" style="width: 140px;" />
-            <h5>Marie Horwitz</h5>
-            <p>Web Designer</p>
-            <i class="far fa-edit mb-5"></i>
-        </div>
-        <div class="col-md-8">
-            <div class="card-body p-4">
-                
-                </div>
-                <h6>Company Information</h6>
-                <hr class="mt-0 mb-4">
-                <div class="row pt-1">
-                  <div class="col-6 mb-3">
-                    <h6>Company Name</h6>
-                    <p class="text-muted"><strong><?php echo $data['company_name']?></strong></p>
-                  </div>
-                  <div class="col-6 mb-3">
-                    <h6>Company Address</h6>
-                    <p class="text-muted"><strong><?php echo $data['company_address']?></strong></p>
-                  </div>
-                </div>
-                <h6>Contact Information</h6>
-                <hr class="mt-0 mb-4">
-                <div class="row pt-1">
-                  <div class="col-6 mb-2">
-                    <h6>Email</h6>
-                    <p class="text-muted"><strong><?php echo $data['email']?></strong></p>
-                  </div>
-                  <div class="col-6 mb-2">
-                    <h6>Tel</h6>
-                    <p class="text-muted"><strong><?php echo $data['tel']?></strong></p>
-                  </div>
-                  <div class="col-6 mb-2">
-                    <h6>Mobile</h6>
-                    <p class="text-muted"><strong><?php echo $data['mobile']?></strong></p>
-                  </div>
-                  <div class="col-6 mb-2">
-                    <h6>Zaad</h6>
-                    <p class="text-muted"><strong><?php echo $data['zaad']?></strong></p>
-                  </div>
-                  <div class="col-6 mb-2">
-                    <h6>Edahab</h6>
-                    <p class="text-muted"><strong><?php echo $data['edahab']?></strong></p>
-                  </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="text-center">
-    <a href="add-company.php?id=<?php echo $data['id'];?>" class="btn btn-primary mb-2"><i class="fa fa-edit"></i> Update</a>
-    </div>
-      </div>
-      <?php } }?>
     </div>
   </div>
 </section>

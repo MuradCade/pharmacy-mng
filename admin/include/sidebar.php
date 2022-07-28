@@ -25,6 +25,7 @@
                 <li><a href="rooms.php"><i class="fa fa-hotel"></i>Rooms</a></li>
                 <li><a href="payment.php"><i class="fa fa-money"></i>Payment</a></li>
                 <li><a href="company.php"><i class="fa fa-building-o"></i> Company</a></li>
+                <li><a href="complain.php"><i class="fa fa-envelope"></i> Complains</a></li>
                 <li><a href="report.php"><i class="fa fa-bar-chart"></i> Report</a></li>
                 </ul>
               </div>
