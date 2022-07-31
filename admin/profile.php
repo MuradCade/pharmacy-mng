@@ -10,7 +10,10 @@
 
 include_once('admin-class/display-particular-user.php');
 
-if(isset($_SESSION['userid'])) $id = $_SESSION['userid'];
+if(isset($_SESSION['userid']))
+$id = $_SESSION['userid'];
+
+
 $usersdata = new DisplayUser();
 $fetchData = $usersdata->User($id);
 

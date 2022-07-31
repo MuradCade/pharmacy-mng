@@ -1,12 +1,11 @@
 <?php
 include('reception-class/img-of-current-user.php');
 $img = new DisplayProfileImg();
-if(isset($_SESSION['userid'])) 
-$id = $_SESSION['userid'];
+if(isset($_SESSION['userid'])){
+    $id = $_SESSION['userid'];
+}
 else{
-  session_start();
-  $id = $_SESSION['userid'];
-  
+    $id="There Is No Id";
 }
 ?>
 

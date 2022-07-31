@@ -13,9 +13,9 @@ class displayPatient extends Database{
             return $data;
     
     }
-    public function onepatient(){
+    public function onepatient($id){
 
-        $sql = "SELECT * FROM patient limit 1";
+        $sql = "SELECT * FROM patient where  p_id = '$id'";
         $result = mysqli_query($this->connect,$sql);
         $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
             $data = $row;

@@ -1,7 +1,9 @@
 <?php
 include('admin-class/display-patientinfo.php');
-$data = new displayPatient();
-$fetchData = $data->onepatient();
+if(isset($_GET['id']))  $id = $_GET['id'];
+    $data = new displayPatient();
+    $fetchData = $data->onepatient($id);
+
 
 
 ?>

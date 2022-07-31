@@ -46,7 +46,7 @@ if(isset($_GET['id'])){
                                 foreach($fetchData as $data){
                                     ?>
 
-                  <form  action="admin-class/add-company.php?id=<?php echo $id?>" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"  enctype='multipart/form-data'>
+                  <form  action="admin-class/add-company.php?id=<?php echo $data['id']?>" method="post" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"  enctype='multipart/form-data'>
                   <div class="item form-group">
                     <label class="col-form-label col-md-3 col-sm-3 label-align" >Company Name <span class="required">*</span>
                     </label>

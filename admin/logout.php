@@ -1,9 +1,9 @@
 <?php
+session_start();
 
 class logout{
 
     public function logoutuser(){
-        session_start();
         session_destroy();
         header("location:../index.php");
         exit();

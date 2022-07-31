@@ -28,7 +28,7 @@ class IdentifyUserLogin extends Database{
 
             if (mysqli_num_rows($result)  > 0) {
                 $row = mysqli_fetch_assoc($result);
-                $verified = password_verify($row['pwd'], $pwd);
+             
                 if ($row['username'] === $username && $row['pwd'] === $pwd) {
                     session_start();
                     session_regenerate_id();

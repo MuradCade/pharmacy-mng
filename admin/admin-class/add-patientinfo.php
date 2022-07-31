@@ -28,10 +28,6 @@ class AddPatient extends Database{
                     header("location:../add-patient.php?error=Empty-Patient-Phone-Number-Field");
                     exit();
                 }
-                else if(empty($date)){
-                    header("location:../add-patient.php?error=Empty-Date-Field");
-                    exit();
-                }
  
                 else if(empty($ppayment)){
                     header("location:../add-patient.php?error=Empty-Payment-Field");

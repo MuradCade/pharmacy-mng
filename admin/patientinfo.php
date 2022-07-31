@@ -1,8 +1,8 @@
 <?php
+ session_start();
  include('admin-class/display-patientinfo.php');
  include('admin-class/delete-patient.php');
 
- session_start();
  if(!isset($_SESSION['userid'])){
  
      header("location:../index.php");

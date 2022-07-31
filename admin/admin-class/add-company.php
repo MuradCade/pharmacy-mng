@@ -15,13 +15,28 @@ class AddCompany extends Database{
             $edahab = $_POST['edahab'];
 
             if(isset($_GET['id'])) $id = $_GET['id'];
-            
+           
 
-            $img = $_FILES["file"]["name"];
+          $img = $_FILES["file"]["name"];
             $tempname = $_FILES["file"]["tmp_name"];
             $folder = "../admin-img/" . $img;
 
-            $sql = "UPDATE  company SET company_name = '$companyname',
+            if(empty($img)){
+                $sql = "UPDATE  company SET company_name = '$companyname',
+            company_address = '$address',email = '$email',tel = '$tel',mobile = '$mobile',zaad = '$zaad',edahab = '$edahab' where id = '$id'";
+            $result = mysqli_query($this->connect,$sql);
+            if ($result) {
+                       
+                header("location:../company.php?success=Company-Data-Saved-Successfully");
+                exit();
+            } else {
+                header("location:../company.php?error=Company-Data-Failed-To-Save");
+                exit();
+
+            }
+            }
+            else{
+                $sql = "UPDATE  company SET company_name = '$companyname',
             company_address = '$address',email = '$email',tel = '$tel',mobile = '$mobile',zaad = '$zaad',edahab = '$edahab',
             logo = '$img' where id = '$id'";
             $result = mysqli_query($this->connect,$sql);
@@ -33,6 +48,7 @@ class AddCompany extends Database{
                 header("location:../company.php?error=Company-Data-Failed-To-Save");
                 exit();
 
+            }
             }
         }
         }
