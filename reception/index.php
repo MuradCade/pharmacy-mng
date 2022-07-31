@@ -6,7 +6,10 @@ if(!isset($_SESSION['userid'])){
     header("location:../index.php");
     exit();
 }
-
+if($_SESSION['role'] != 'reception'){
+  header("Location:../home.php");
+  exit();
+}
 include('reception-class/totalnumber.php');
 $data = new TotalNumber();
 // else if(isset($_SESSION['role']) !== "user"){

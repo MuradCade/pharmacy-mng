@@ -8,7 +8,10 @@
      header("location:../index.php");
      exit();
  }
-
+ if($_SESSION['role'] != 'reception'){
+  header("Location:../home.php");
+  exit();
+}
  $data = new displayPatient();
  $fetchData = $data->allpatient();
 
@@ -85,7 +88,7 @@
                             foreach($fetchData as $data){
                           ?>
                             <tr>
-                            <td> <img src="p-img/<?php echo $data['img']??'';?>" alt="Patient Image" style="width:50px; height: 50px; border-radius:50px;"></td>
+                            <td> <img src="../../admin/p-img/<?php echo $data['img']??'';?>" alt="Patient Image" style="width:50px; height: 50px; border-radius:50px;"></td>
                             <td style="font-size:14px;"><?php echo $data["p_id"]??''; ?></td>
                             <td><a href="patient-personal.php?id=<?php echo $data['p_id']?>" style="text-decoration:none; font-size:16px;"><?php echo $data["p_name"]??''; ?></a></td>
                             <td style="font-size:14px;"><?php echo $data["p_phone"]??''; ?></td>

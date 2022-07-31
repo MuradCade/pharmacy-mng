@@ -6,7 +6,10 @@ if(!isset($_SESSION['userid'])){
     header("location:../index.php");
     exit();
 }
-
+if($_SESSION['role'] != 'reception'){
+  header("Location:../home.php");
+  exit();
+}
 $display= new AddComplain();
 $fetchData = $display->displaycomplain();
 
@@ -67,7 +70,7 @@ if(isset($_GET['del'])){
                         <tr>
                           <th>Fullname</th>
                           <th>Phone</th>
-                          <th>Email</th>
+                          <th>Message</th>
                           <th>Action</th>
                         </tr>
                       </thead>

@@ -5,7 +5,10 @@ if(!isset($_SESSION['userid'])){
     header("location:../index.php");
     exit();
 }
-
+if($_SESSION['role'] != 'reception'){
+  header("Location:../home.php");
+  exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

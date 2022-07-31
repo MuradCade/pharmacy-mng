@@ -8,7 +8,10 @@
      header("location:../index.php");
      exit();
  }
-
+ if($_SESSION['role'] != 'admin'){
+  header("Location:../home.php");
+  exit();
+}
  $data = new displayPatient();
  $fetchData = $data->allpatient();
 

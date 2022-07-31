@@ -7,14 +7,16 @@ if(!isset($_SESSION["userid"]) && !isset($_SESSION["username"]))
   exit();
 }
 
-
+if($_SESSION['role'] != 'admin'){
+  header("Location:../home.php");
+  exit();
+}
 include('admin-class/display-users.php');
 $users = new CurrentUsers();
 $fetch = $users->Users();
 
 include_once('admin-class/totalnumber.php');
 $data = new TotalNumber();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

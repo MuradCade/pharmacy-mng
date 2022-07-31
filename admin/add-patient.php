@@ -53,7 +53,7 @@ $fetch = $room->rooms();
                 </div>
                   <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                    <input type="number" class="form-control has-feedback-left" placeholder="Patient ID" name="p_id">
+                    <input type="number" class="form-control has-feedback-left" placeholder="Patient ID" name="p_id" value="<?php $pid = rand(100,900); echo $pid; ?>">
                     <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
                   </div>
                   </div>

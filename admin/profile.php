@@ -6,7 +6,10 @@
         header("location:../index.php");
         exit();
     }
-  
+    if($_SESSION['role'] != 'admin'){
+      header("Location:../home.php");
+      exit();
+    }
 
 include_once('admin-class/display-particular-user.php');
 

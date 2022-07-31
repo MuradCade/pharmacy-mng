@@ -2,7 +2,7 @@
 
 session_start();
 
-if(isset($_SESSION["id"]) && isset($_SESSION["username"])){
+if(isset($_SESSION["userid"]) && isset($_SESSION["username"])){
   header("location:home.php");
   exit();
 }
@@ -105,6 +105,6 @@ if(isset($_SESSION["id"]) && isset($_SESSION["username"])){
         </div>
       </div>
     </div>
-    <p class="text-center mb-2" style="font-weight:600;">Developed by <strong class="text-secondary">Tayo Tech</strong></p>
+    <p class="text-center mb-2" style="font-weight:600;"> &copy; Developed by  <strong class="text-secondary">Tayo Tech</strong> All Right Reserved</p>
   </body>
 </html>

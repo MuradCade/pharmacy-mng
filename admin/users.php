@@ -6,6 +6,10 @@ if(!isset($_SESSION['userid'])){
     header("location:../index.php");
     exit();
 }
+if($_SESSION['role'] != 'admin'){
+  header("Location:../home.php");
+  exit();
+}
 
 $users = new CurrentUsers();
 $fetch = $users->Users();

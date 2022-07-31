@@ -8,7 +8,10 @@ if(!isset($_SESSION['userid'])){
 }
 $companydata = new Displaycompany();
 $fetchData = $companydata->company();
-
+if($_SESSION['role'] != 'admin'){
+  header("Location:../home.php");
+  exit();
+}
 
 ?>
 <!DOCTYPE html>

@@ -3,9 +3,9 @@
 
 class Database{
     private $hostname = "localhost";
-    private $username = "id19338987_admin";
-    private $pwd = "I*BpabTa7&Blvr1j";
-    private $dbname = "id19338987_pharmacy";
+    private $username = "root";
+    private $pwd = "";
+    private $dbname = "pharmcay_mng";
 
     public $connect;
     public function __construct(){

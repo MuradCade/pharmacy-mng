@@ -9,7 +9,10 @@ if(!isset($_SESSION['userid'])){
 }
 $payment = new displayPayment();
 $fetchData = $payment->allpayment();
-
+if($_SESSION['role'] != 'reception'){
+  header("Location:../home.php");
+  exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

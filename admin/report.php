@@ -7,7 +7,10 @@ if(!isset($_SESSION['userid'])){
     header("location:../index.php");
     exit();
 }
-
+if($_SESSION['role'] != 'admin'){
+  header("Location:../home.php");
+  exit();
+}
 $displaydata = new GetReport();
 $fetchData = $displaydata->Report()
 
@@ -72,7 +75,7 @@ $fetchData = $displaydata->Report()
                                 <td><?php echo $data['p_id'];?></td>
                                 <td><?php echo $data['p_name'];?></td>
                                 <td><?php echo $data['p_phone'];?></td>
-                                <td><?php echo $data['debt']?></td>
+                                <td>$<?php echo $data['debt']?></td>
                                 <td><?php ?></td>
                               </tr>
                           <?php }

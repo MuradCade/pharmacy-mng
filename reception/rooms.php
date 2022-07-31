@@ -15,7 +15,10 @@ if(isset($_GET['del'])){
   $delete = new Deleterooms();
   $delete->delete($del);
 }
-
+if($_SESSION['role'] != 'reception'){
+  header("Location:../home.php");
+  exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

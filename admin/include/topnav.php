@@ -2,10 +2,12 @@
 include('admin-class/img-of-current-user.php');
 $img = new DisplayProfileImg();
 if(isset($_SESSION["userid"])){
-    $id = $_SESSION["userid"];
+  $id = $_SESSION["userid"];
 }
 else{
-    $id="";
+  session_start();
+  $id = $_SESSION["userid"];
+
 }
 
 

@@ -13,7 +13,10 @@ if(isset($_SESSION['userid'])) $id = $_SESSION['userid'];
 $usersdata = new DisplayUser();
 $fetchData = $usersdata->User($id);
 
-
+if($_SESSION['role'] != 'reception'){
+  header("Location:../home.php");
+  exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

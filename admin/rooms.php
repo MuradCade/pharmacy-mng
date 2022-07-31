@@ -9,7 +9,10 @@ if(!isset($_SESSION['userid'])){
 }
 $data = new displayrooms();
 $fetchData = $data->rooms();
-
+if($_SESSION['role'] != 'admin'){
+  header("Location:../home.php");
+  exit();
+}
 if(isset($_GET['del'])){
   $del = $_GET['del'];
   $delete = new Deleterooms();

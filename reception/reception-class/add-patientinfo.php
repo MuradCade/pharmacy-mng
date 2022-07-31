@@ -45,7 +45,7 @@ class AddPatient extends Database{
                          $total = $ppayment-$powed;
                          $img = $_FILES["file"]["name"];
                          $tempname = $_FILES["file"]["tmp_name"];
-                         $folder = "../p-img/" . $img;
+                         $folder = "../../admin/p-img/" . $img;
                          $sql = "insert into patient(img,p_id,p_name,p_phone,room_number,date,p_payment,payment_status,debt,total)
                         values('$img','$pid','$pname','$pphone','$proom','$date','$ppayment','$paymentStatus','$powed','$total')";
                         $result = mysqli_query($this->connect,$sql);

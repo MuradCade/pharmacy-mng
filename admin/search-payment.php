@@ -5,7 +5,10 @@ if(isset($_POST['submit'])){
     $search = new Searchpayment();
    
 }
-
+if($_SESSION['role'] != 'admin'){
+  header("Location:../home.php");
+  exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

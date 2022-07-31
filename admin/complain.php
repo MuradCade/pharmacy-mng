@@ -1,12 +1,15 @@
 <?php
-include("admin-class/add-complain.php");
 session_start();
+include("admin-class/add-complain.php");
 if(!isset($_SESSION['userid'])){
 
     header("location:../index.php");
     exit();
 }
-
+if($_SESSION['role'] != 'admin'){
+  header("Location:../home.php");
+  exit();
+}
 $display= new AddComplain();
 $fetchData = $display->displaycomplain();
 
@@ -67,7 +70,7 @@ if(isset($_GET['del'])){
                         <tr>
                           <th>Fullname</th>
                           <th>Phone</th>
-                          <th>Email</th>
+                          <th>Message</th>
                           <th>Action</th>
                         </tr>
                       </thead>
