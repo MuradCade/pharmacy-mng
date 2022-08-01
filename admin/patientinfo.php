@@ -39,7 +39,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3><i class="fa fa-medkit"></i> Patient Category</h3>
+                <h3><i class="fa fa-medkit"></i> Patient Information</h3>
               </div>
             </div>
 
@@ -59,7 +59,7 @@
               <div class="col-md-12 col-sm-12  ">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>List of Patient Category</h2>
+                    <h2>List of Patient</h2>
                     <ul class="nav navbar-right panel_toolbox">
                     <a href="add-patient.php" class="btn btn-sm btn-info text-white"><i class="fa fa-plus"></i> Add Patient</a>
                     </ul>
@@ -76,7 +76,8 @@
                           <th>Room Number</th>
                           <th>Payment Amount</th>
                           <th>Date</th>
-                          <th>Payment Status</th>
+                          <th>Patient Service</th>
+                          <th>Location</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -96,6 +97,7 @@
                             <td style="font-size:14px;">$ <?php echo $data["p_payment"]??''; ?></td>
                             <td style="font-size:14px;"><?php echo $data["date"]??''; ?></td>
                             <td style="font-size:14px;"><?php echo $data["payment_status"]??''; ?></td>
+                            <td style="font-size:14px;"><?php echo $data["location"]??''; ?></td>
                             <td>
                                 <a href="edit-patient.php?display=<?php echo $data['id']?>" class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
                                 <a href="patientinfo.php?del=<?php echo $data['id']?>" class="btn btn-sm btn-danger text-white"><i class="fa fa-trash"></i> delete</a>

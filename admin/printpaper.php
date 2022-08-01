@@ -1,64 +1,120 @@
 <?php
-
+session_start();
 include_once('admin-class/display-printpaperData.php');
 include_once('admin-class/display-company.php');
-session_start();
+
 if(!isset($_SESSION['userid'])){
 
     header("location:../index.php");
     exit();
 }
+// fetch the patient info
 $display = new DisplayData();
 $fetchData = $display->Display();
-
+// fetch company info
 $displaycompany = new Displaycompany();
 $fetch = $displaycompany->company();
-
-
 ?>
 <!DOCTYPE html>
-<!--
- * HTML-Sheets-of-Paper (https://github.com/delight-im/HTML-Sheets-of-Paper)
- * Copyright (c) delight.im (https://www.delight.im/)
- * Licensed under the MIT License (https://opensource.org/licenses/MIT)
--->
-<html>
-<!--  -->
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/printerpaper.css">
-	</head>
-	<body class="document" onload="window.print()">
-		<?php foreach($fetch as $fetched){?>
-		<div class="page" contenteditable="true">
-			<div class="header">
-				<div class="head1"><?php $date = date('Y/m/d h:i:sa'); echo"<h4>".$date."</h4>";?></div>
-				<div class="head3" style="font-weight:bold;">Sales Receipt <strong>#<?php echo(rand(10,1000))?></strong></div>
-			</div>
-			<?php
-                            if(is_array($fetchData)){      
+<html lang="en">
+<?php include 'include/header.php';?>
+<head>
+
+</head>
+  <body class="nav-md">
+            <?php include 'include/sidebar.php';?>
+            <?php include 'include/menufooter.php';?>
+          </div>
+        </div>
+
+        <?php include 'include/topnav.php';?>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3><i class="fa fa-print"></i> Print Paper</h3>
+              </div>
+            </div>
+
+			<button class="btn btn-primary" style="float:left;" onclick="print('pages')"><i class="fa fa-print">Print</i></button>
+            <div class="clearfix"></div>
+            <div class="row">
+              <div class="col-md-12 col-sm-12  ">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <ul class="nav navbar-right panel_toolbox">
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+            <?php      if(is_array($fetchData)){      
 								foreach($fetchData as $data){
 									?>
-			<div class="head2" style='text-align:center;'><h4><strong style="text-transform:uppercase"><?php echo $fetched['company_name']?></strong></h4></div>
-			<p style="text-align:center; font-size:16px; font-weight:400; margin-top:-14px"><?php echo "Tel:" .$fetched['tel'];?>&numsp;<?php echo " Mobile:" .$fetched['mobile'];?> </p>
-			<p style="text-align:center; font-size:16px; font-weight:400; margin-top:-14px"><?php echo "Zaad:" .$fetched['zaad'];?>&numsp;<?php echo " Edahab:" .$fetched['edahab'];?> </p>
-			<p style="font-size:18px; font-weight:400; margin-top:10px;margin-bottom:10px;">Fullname: <?php echo $data['p_name']?></p>
-			<p style="font-size:18px; font-weight:400;">Phone: <?php echo  $data['p_phone']?></p>
-			<p style="font-size:18px; font-weight:400;">Date:  <?php echo $data['date']?></p>
-			<p style="font-size:18px; font-weight:400;">Payment Amount: $<?php echo $data['p_payment']?></p>
-			<p style="font-size:18px; font-weight:400;">Owed(Lagu Leeyahay): - $<?php echo $data['debt']?></p>
-			<p style="font-size:18px; font-weight:400; text-align:center;">Total: $<?php echo $data['total']?></p>
-			
-			<div class="footer">
-			<p><?php echo "Address: ".$fetched['company_address']?></p>
-			<p><?php echo "Email: ".$fetched['email']?></p>
-			<p><?php echo "Phone: ".$fetched['mobile']?></p>
+                  <div class="x_content">
+              <div class="page" id="pages">
+				<div class="containers">
+					<div class="date">
+						<h4><?php  $date = date('d/m/Y/'); echo $date;?></h4>
+					</div>
+					<div class="userinfo">
+						<p>Patient No: <a  style="text-decoration:none; color:navy; font-weight:normal; font-size:16px;  border-bottom:1px dotted  navy;"><?php echo  $data['p_id']?></a></p>
+						<p>Name: <a  style="text-decoration:none; color:navy; font-weight:normal; font-size:16px;  border-bottom:1px dotted  navy;"><?php echo  $data['p_name']?></a></p>
+						<p>contact: <a  style="text-decoration:none; color:navy; font-weight:normal; font-size:16px;  border-bottom:1px dotted  navy;"><?php echo  $data['p_phone']?></a></p>
+						<p>paid: <a  style="text-decoration:none; color:navy; font-weight:normal; font-size:16px;  border-bottom:1px dotted  navy;"><?php echo  $data['debt']?></a></p>
+						<p>TotalAmount: <a  style="text-decoration:none; color:navy; font-weight:normal; font-size:16px;  border-bottom:1px dotted  navy;"><?php echo  $data['p_payment']?></a></p>
+						<p>Location: <a  style="text-decoration:none; color:navy; font-weight:normal; font-size:16px;  border-bottom:1px dotted  navy;"><?php echo  $data['location']?></a></p>
+						<p></p>
+					</div>
+				</div>
 
-			</div>
-			<?php } }?>
-		</div>
-		<?php }?>
-	</body>
+				<p class='services'>Patient-Service <p style='font-size:14px; margin-top:-10px; font-weight:700;color:black;'><?php echo  $data['payment_status']?></p></p>
+				<div class="ads">
+					<h4>
+						Services We Offer
+					</h4>
+					<p>Scalling(Sifaynta Ilkaha)</p>
+					<p>Root Canal Treatment(Dhux Ka Dilid)</p>
+					<p>Orthodontic Treatment(Silig Xidhid)</p>
+					<p>Fixed & Removeable Prosthesis(Galinta Ilkaha)</p>
+					<p>Fillings(Buxinta Ilkaha)</p>
+					<p>Implant(Berista Ilkaha)</p>
+					<p>Extraction(Sarida Ilkaha)</p>
+					<p>Soft Tissue Graft(Cirid Berista)</p>
+					<p>Dental Treatment(Dawaynta Xanunada Ilakaha Iyo Afka)</p>
+          <?php      if(is_array($fetch)){      
+								foreach($fetch as $data){
+									?>
+				<div class="number">
+					<p class='line-top'></p>
+					<p class='Phone'>Phone: <?php echo $data['mobile']?></p>
+					<p class='Location'>Location: <?php echo $data['company_address']?></p>
+					<p class='line-bottom'></p>
+				</div>
+        <?php }} ?>
+				<div class="User">Served By : <?php echo $_SESSION['username']?></div>
+				</div>
+
+</div>
+<?php }}?>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<script>
+  function myprint(pages){
+  var printdata = document.getElementById(pages);
+  newwin = window.open("");
+  newwin.document.write(printdata.outerHTML);
+  newwin.print();
+  newwin.close();
+}
+</script>
+    <?php include 'include/footer.php';?>
+  </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 require_once('../model/db.php');
-
+require_once('trackpayment.php');
 class AddPatient extends Database{
     public function Patientdata(){
         if(isset($_POST['submit'])){
@@ -13,6 +13,7 @@ class AddPatient extends Database{
             $ppayment = $_POST['p_payment'];
             $powed = $_POST['p_owed'];
             $paymentStatus = $_POST['p_pstatus'];
+            $paymentTotal = $_POST['total'];
             
                 if(empty($pid)){
                     header("location:../add-patient.php?error=Empty-Patient-Id-Field");
@@ -42,12 +43,16 @@ class AddPatient extends Database{
                     exit();
                 }
                 else{
-                    if(isset($_GET['display'])) $id = $_GET['display'];
-                    $total = $ppayment-$powed;
+                    $total = $paymentTotal-$powed;
                     $img = $_FILES["file"]["name"];
                     $tempname = $_FILES["file"]["tmp_name"];
                     $folder = "../p-img/" . $img;
                     if(empty($img)){
+                        if(isset($_GET['display'])) $id = $_GET['display'];
+                        //  track payment
+                        $trackpayment = new Trackpayment();
+                        $trackpayment->Track($pid,$paymentTotal,$powed,$total,$date);
+
                        $sql = "Update patient Set  p_id = '$pid',
                        p_name = '$pname', p_phone = '$pphone',room_number = '$proom', date = '$date',
                         p_payment = '$ppayment', payment_status = '$paymentStatus',
@@ -64,6 +69,11 @@ class AddPatient extends Database{
        
                    } 
                     }else{
+                        if(isset($_GET['display'])) $id = $_GET['display'];
+                        //  track payment
+                        $trackpayment = new Trackpayment();
+                        $trackpayment->Track(pid,$paymentTotal,$powed,$total,$date);
+
                        $sql = "Update patient Set img = '$img', p_id = '$pid',
                        p_name = '$pname', p_phone = '$pphone',room_number = '$proom', date = '$date',
                         p_payment = '$ppayment', payment_status = '$paymentStatus',

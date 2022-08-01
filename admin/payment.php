@@ -57,7 +57,7 @@ $fetchData = $payment->allpayment();
                           <th>Patient Name</th>
                           <th>Patient Number</th>
                           <th>Amount Payment</th>
-                          <th>owed</th>
+                          <th>Paid</th>
                           <th>Total</th>
                           <th>Action</th>
                         </tr>
