@@ -11,7 +11,7 @@ class Searchpayment extends Database{
         $row = mysqli_num_rows($result);
         if($row >0){
         while($rows = mysqli_fetch_assoc($result))
-        $results = $this->total += $rows['total'];
+        $results = $this->total += $rows['debt'];
         echo "<h6><strong>Date: </strong>".$date."</h6>";
         echo"<h6 class='mt-3 mb-1'> <strong>Total Payment: $</strong>" .$results."</h6>";
         }
@@ -23,6 +23,15 @@ class Searchpayment extends Database{
      
        
     }
+    public function displaycurrentpaymentdate($date){
+        $sql = "select * from patient where date = '$date'";
+        $result = mysqli_query($this->connect,$sql);
+        $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $data = $row;
+
+        return $data;
+    }
+    
 
 public function numberPatient($date){
     $sql = "select * from patient where date = '$date'";

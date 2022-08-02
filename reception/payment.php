@@ -7,12 +7,13 @@ if(!isset($_SESSION['userid'])){
     header("location:../index.php");
     exit();
 }
-$payment = new displayPayment();
-$fetchData = $payment->allpayment();
 if($_SESSION['role'] != 'reception'){
   header("Location:../home.php");
   exit();
 }
+$payment = new displayPayment();
+$fetchData = $payment->allpayment();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +56,7 @@ if($_SESSION['role'] != 'reception'){
                           <th>Patient Name</th>
                           <th>Patient Number</th>
                           <th>Amount Payment</th>
-                          <th>owed</th>
+                          <th>Paid</th>
                           <th>Total</th>
                           <th>Action</th>
                         </tr>

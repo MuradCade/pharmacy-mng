@@ -1,6 +1,7 @@
 <?php
 
 require_once('../model/db.php');
+require_once('trackpayment.php');
 
 class AddPatient extends Database{
     public function Patientdata(){
@@ -13,6 +14,7 @@ class AddPatient extends Database{
             $ppayment = $_POST['p_payment'];
             $powed = $_POST['p_owed'];
             $paymentStatus = $_POST['p_pstatus'];
+            $location = $_POST['location'];
             
                 if(empty($pid)){
                     header("location:../add-patient.php?error=Empty-Patient-Id-Field");
@@ -28,10 +30,6 @@ class AddPatient extends Database{
                     header("location:../add-patient.php?error=Empty-Patient-Phone-Number-Field");
                     exit();
                 }
-                else if(empty($date)){
-                    header("location:../add-patient.php?error=Empty-Date-Field");
-                    exit();
-                }
  
                 else if(empty($ppayment)){
                     header("location:../add-patient.php?error=Empty-Payment-Field");
@@ -42,12 +40,16 @@ class AddPatient extends Database{
                     exit();
                 }
                 else{
-                         $total = $ppayment-$powed;
+                    $total = $ppayment-$powed;
                          $img = $_FILES["file"]["name"];
                          $tempname = $_FILES["file"]["tmp_name"];
                          $folder = "../../admin/p-img/" . $img;
-                         $sql = "insert into patient(img,p_id,p_name,p_phone,room_number,date,p_payment,payment_status,debt,total)
-                        values('$img','$pid','$pname','$pphone','$proom','$date','$ppayment','$paymentStatus','$powed','$total')";
+                        //  track payment
+                         $trackpayment = new Trackpayment();
+                         $trackpayment->Track($pid,$ppayment,$powed,$total,$date);
+
+                         $sql = "insert into patient(img,p_id,p_name,p_phone,room_number,date,p_payment,payment_status,location,debt,total)
+                        values('$img','$pid','$pname','$pphone','$proom','$date','$ppayment','$paymentStatus','$location','$powed','$total')";
                         $result = mysqli_query($this->connect,$sql);
                                 
                     if (move_uploaded_file($tempname, $folder)) {

@@ -1,8 +1,11 @@
 <?php
+  session_start();
+
 include_once('admin-class/search-payment.php');
 if(isset($_POST['submit'])){
   $date = $_POST['date'];
     $search = new Searchpayment();
+    $fetchData = $search->displaycurrentpaymentdate($date);
    
 }
 
@@ -69,8 +72,48 @@ if(isset($_POST['submit'])){
              if(isset($date)){
               $search->Search($date);
               $search->numberPatient($date);
-              echo "<hr>";
-             }
+              ?>
+              <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                      <thead>
+                        <tr>
+                          <th>Patient Id</th>
+                          <th>Patient Name</th>
+                          <th>Patient Phone</th>
+                          <th>Payment Amount</th>
+                          <th>Patient Service</th>
+                          <th>Paid</th>
+                          <th>Total</th>
+                        </tr>
+                      </thead>
+
+
+                      <tbody>
+                                <?php
+                if(is_array($fetchData)){      
+                foreach($fetchData as $data){
+              ?>
+                <tr>
+                <td><?php echo $data['p_id']??''; ?></td>
+                <td><?php echo $data['p_name']??''; ?></td>
+                <td><?php echo $data['p_phone']??''; ?></td>
+                <td><?php echo $data['p_payment']??''; ?></td>
+                <td><?php echo $data['payment_status']??''; ?></td>
+                <td><?php echo $data['debt']??''; ?></td>
+                <td><?php echo $data['total']??''; ?></td>
+                
+              </tr>
+              <?php
+                }}else{ ?>
+                <tr>
+                  <td colspan="8">
+              <?php echo $fetchData; ?>
+            </td>
+              <tr>
+              <?php
+              }?>
+                      </tbody>
+                    </table>
+             <?php }
               else{
                 echo "There Is No Aviable Data To Show Here. <br> Please Search To Se Results";
               }

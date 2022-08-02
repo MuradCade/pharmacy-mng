@@ -1,4 +1,6 @@
 <?php
+  session_start();
+
 require_once("admin-class/add-rooms.php");
 
 if(isset($_POST['submit'])){

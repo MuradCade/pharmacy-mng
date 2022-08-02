@@ -1,4 +1,5 @@
 <?php
+session_start();
  include_once('reception-class/edit-patient.php');
  include_once('reception-class/display-room.php');
 
@@ -109,13 +110,25 @@ $fetch = $room->rooms();
                 </div>
                 <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                    <input type="text" class="form-control has-feedback-left" placeholder="Owed (Patient Lacag Lagu Leeyahay)" name="p_owed" value="<?php echo $data['debt']?>">
+                    <input type="text" class="form-control has-feedback-left" placeholder="Paid" name="p_owed" value="<?php echo $data['debt']?>">
                     <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
                   </div>
                 </div>
                 <div class="item form-group">
                   <div class="col-md-8 col-sm-8 offset-md-2">
-                    <input type="text" class="form-control has-feedback-left" placeholder="Payament Status" name="p_pstatus" value="<?php echo $data['payment_status']?>">
+                    <input type="text" class="form-control has-feedback-left" placeholder="Patient Service" name="p_pstatus" value="<?php echo $data['payment_status']?>">
+                    <span class="fa fa-check-square form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="item form-group">
+                  <div class="col-md-8 col-sm-8 offset-md-2">
+                    <input type="text" class="form-control has-feedback-left" placeholder="Location" name="location" value="<?php echo $data['location']?>">
+                    <span class="fa fa-check-square form-control-feedback left" aria-hidden="true"></span>
+                  </div>
+                </div>
+                <div class="item form-group">
+                  <div class="col-md-8 col-sm-8 offset-md-2">
+                    <input type="text" class="form-control has-feedback-left" placeholder="Total" name="total" value="<?php echo $data['total']?>">
                     <span class="fa fa-check-square form-control-feedback left" aria-hidden="true"></span>
                   </div>
                 </div>

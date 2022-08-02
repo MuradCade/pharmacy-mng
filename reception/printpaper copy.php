@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once('reception-class/display-printpaperData.php');
-include_once('reception-class/display-company.php');
+include_once('admin-class/display-printpaperData.php');
+include_once('admin-class/display-company.php');
 
 if(!isset($_SESSION['userid'])){
 
@@ -55,7 +55,7 @@ $fetch = $displaycompany->company();
               <div class="page" id="pages">
 				<div class="containers">
 					<div class="date">
-						<h4><?php  $date = date('d/m/Y'); echo $date;?></h4>
+						<h4><?php  $date = date('d/m/Y/'); echo $date;?></h4>
 					</div>
 					<div class="userinfo">
 						<p>Patient No: <a  style="text-decoration:none; color:navy; font-weight:normal; font-size:16px;  border-bottom:1px dotted  navy;"><?php echo  $data['p_id']?></a></p>

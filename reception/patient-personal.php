@@ -1,11 +1,18 @@
 <?php
+session_start();
 include('reception-class/display-patientinfo.php');
-if(isset($_GET['id'])){
+require_once('reception-class/trackpayment.php');
+if(isset($_GET['id'])) {
   $id = $_GET['id'];
-  $data = new displayPatient();
-$fetchData = $data->onepatient($id);
+    $data = new displayPatient();
+    $fetchData = $data->onepatient($id);
+
 }
 
+  if(isset($_GET['id'])){
+    $paymenttracker = new Trackpayment();
+    $fetch = $paymenttracker->DisplaypaymentTrack($id);
+  }
 
 ?>
 
@@ -79,7 +86,7 @@ $fetchData = $data->onepatient($id);
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
               <i class="fa fa-money text-secondary"></i>
-                <p class="mb-0"><strong>Owed : </strong> $<?php echo $data['debt']?></p>
+                <p class="mb-0"><strong>Paid : </strong> $<?php echo $data['debt']?></p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
               <i class="fa fa-money text-secondary"></i>
@@ -121,7 +128,7 @@ $fetchData = $data->onepatient($id);
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0" style="font-size:16px"><strong>Payment Status</strong></p>
+                <p class="mb-0" style="font-size:16px"><strong>Patient Service</strong></p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0" style="font-size:16px"><?php echo $data['payment_status']?></p>
@@ -130,37 +137,70 @@ $fetchData = $data->onepatient($id);
             <hr>
           </div>
         </div>
+                      <!-- track payment -->
+                      <div class="card mb-4 mb-lg-0">
+                        <h4 class='mt-4  ml-2 text-center' style='font-size:18px;'><strong>Track Payment</strong></h4>
+              <div class="card-body">
+              <div class="row">
+          <div class="col-lg-12">
+             <!--Table-->
+<table class="table table-striped table-bordered w-auto">
+
+<!--Table head-->
+<thead>
+  <tr>
+    <th>Number</th>
+    <th>Patient Id</th>
+    <th>Total Amount</th>
+    <th>Paid</th>
+    <th>Owed(Lacag Weli Lagu leeyahay)</th>
+    <th>Date</th>
+  </tr>
+</thead>
+<!--Table head-->
+
+<!--Table body-->
+<tbody>
+
+  <?php
+                            if(is_array($fetch)){ 
+                              $i = 1;     
+                            foreach($fetch as $data2){
+                          ?>
+
+                          <tr>
+                              <td><?php echo $i;?></td>
+                              <td><?php echo $data2['userid']?></td>
+                              <td><?php echo '$'.$data2['total']?></td>
+                              <td><?php echo '$'.$data2['paid']?></td>
+                              <td><?php echo '$'.$data2['owed']?></td>
+                              <td><?php echo $data2['date']?></td>
+                          </tr>
+                          <?php $i++; }}?>
+</tbody>
+<!--Table body-->
+
+
+</table>
+
+          </div>
+         </div>
+<!--Table-->
+</div>
+        <!-- end track payment -->    
               </div>
+      </div>
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
 </section>
-                            
-                       <!-- <img  alt="Patient Image" style="width:50px; height: 50px; border-radius:50px;"> -->
-                               style="font-size:16px;"> 
-                             <a href="patient-personal.php?id=<?php echo $data['p_id']?>" style="text-decoration:none; font-size:16px;"><?php echo $data["p_name"]??''; ?></a>  
-                               <?php echo $data["p_phone"]??''; ?>  
-                            <?php echo $data["room_number"]??''; ?>  
-                                <?php echo $data["p_payment"]??''; ?>  
-                            <?php echo $data["date"]??''; ?>  
-                            <?php echo $data["payment_status"]??''; ?>  
-                             
-                                <a href="edit-category.php?display=<?php echo $data['id']?>" class="btn btn-sm btn-success text-white"><i class="fa fa-edit"></i> edit</a>
-                                
-                        
-                          <?php
-                            }}else{ ?>
-                            <tr>
-                                 colspan="8">
-                          <?php echo $fetchData; ?>
-                          
-                          <tr>
-                          <?php
-                          }?>
+          
                 
+<?php }}?>                
                   </form>
                   </div>
                 </div>

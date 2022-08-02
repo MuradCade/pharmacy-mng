@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('admin-class/display-patientinfo.php');
 require_once('admin-class/trackpayment.php');
 if(isset($_GET['id'])) {
@@ -85,7 +86,7 @@ if(isset($_GET['id'])) {
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
               <i class="fa fa-money text-secondary"></i>
-                <p class="mb-0"><strong>Owed : </strong> $<?php echo $data['debt']?></p>
+                <p class="mb-0"><strong>Paid : </strong> $<?php echo $data['debt']?></p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
               <i class="fa fa-money text-secondary"></i>

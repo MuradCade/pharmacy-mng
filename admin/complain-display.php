@@ -1,4 +1,6 @@
 <?php
+  session_start();
+
 include("admin-class/add-complain.php");
 
 // get id of the complain
@@ -66,7 +68,7 @@ if(isset($_GET['display'])){
   </div>
 
   <!-- Submit button -->
-  <button type="submit" class="btn btn-primary btn-block mb-4" name="submit">Send</button>
+  <button type="submit" class="btn btn-primary btn-block mb-4" name="submit">Submit</button>
 </form>
                     <!-- end form complain -->
                   </div>

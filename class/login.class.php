@@ -31,7 +31,6 @@ class IdentifyUserLogin extends Database{
              
                 if ($row['username'] === $username && $row['pwd'] === $pwd) {
                     session_start();
-                    session_regenerate_id();
 
                     $_SESSION['userid'] = $row['userid'];
                     $_SESSION['username'] = $row['username'];

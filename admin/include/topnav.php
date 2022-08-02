@@ -1,21 +1,22 @@
 <?php
 include('admin-class/img-of-current-user.php');
 $img = new DisplayProfileImg();
-if(isset($_SESSION["userid"])){
-  $id = $_SESSION["userid"];
-}
-else{
-  session_start();
-  $id = $_SESSION["userid"];
-
-}
 
 
 
 ?>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
 <!-- top navigation -->
-        <div class="top_nav">
+<div class="top_nav">
           <div class="nav_menu">
               <div class="nav toggle">
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
@@ -24,8 +25,8 @@ else{
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="admin-img/<?php echo $img->Porfile($id,'img')?>" alt="profile img">
-                    <?php echo $img->Porfile($id,'username')?>
+                    <img src="admin-img/<?php $img->Porfile('img')?>" alt="profile img">
+                    <?php echo $img->Porfile('username')?>
                   </a>
                
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
@@ -39,3 +40,5 @@ else{
           </div>
         </div>
         <!-- /top navigation -->
+</body>
+</html>

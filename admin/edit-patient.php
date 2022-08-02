@@ -1,4 +1,5 @@
 <?php
+session_start();
  include_once('admin-class/edit-patient.php');
  include_once('admin-class/display-room.php');
 

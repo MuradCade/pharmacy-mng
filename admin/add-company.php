@@ -1,4 +1,6 @@
 <?php
+  session_start();
+
 include_once('admin-class/edit-company.php');
 if(isset($_GET['id'])){
   $id = $_GET['id'];

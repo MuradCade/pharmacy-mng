@@ -22,4 +22,6 @@
 
     <!-- Custom Theme Style -->
     <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/printerpaper.css">
+
   </head>
