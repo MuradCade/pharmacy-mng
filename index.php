@@ -19,7 +19,7 @@ if(isset($_SESSION["userid"]) && isset($_SESSION["username"])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Pharmacy Management System</title>
+    <title>DAACAD DENTAL CLINIC</title>
 
     <!-- Bootstrap -->
     <link
